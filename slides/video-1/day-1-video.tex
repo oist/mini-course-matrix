@@ -1,0 +1,153 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Modified by Jeremie Gillet in November 2015 to make an OIST Mini Course template
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass{beamer}
+
+\mode<presentation> {
+
+\usetheme{Madrid}
+
+\definecolor{OISTcolor}{rgb}{0.65,0.16,0.16}
+\usecolortheme[named=OISTcolor]{structure}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{textpos} % Use for positioning the Mini Course logo
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Mini Course]{Mini Course: Mini Course: Matrix Eigendecomposition} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle{Video Lecture 1: What is an Eigendecomposition?}
+
+\author{Jeremie Gillet} % Your name
+\institute[OIST] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+Okinawa Institute of Science and Technology \\ % Your institution for the title page
+\textit{jeremie.gillet@oist.jp} % Your email address
+}
+\date{June 28, 2021} % Date, can be changed to a custom date
+
+\begin{document}
+
+\setbeamertemplate{background}{\includegraphics[width=\paperwidth]{SPbackground.png}} % Adding the background logo
+
+\begin{frame}
+\vspace*{1.4cm}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\setbeamertemplate{background}{} % No background logo after title frame
+
+
+
+\begin{frame}
+\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+\section{Eigenvalues} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+
+\begin{frame}
+\frametitle{Eigenvalues}
+
+Given a complex, square matrix $A \in \mathbb{C}^n_n$, find, if it exists, the invertible matrix $S$ such that 
+$$
+S^{-1} A S = \textrm{diag} \left( \lambda_1, \ldots, \lambda_n \right),
+$$
+with $ \lambda_1, \ldots, \lambda_n $ complex numbers called \textit{eigenvalues}.
+
+\vfill
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{Eigenvectors} 
+
+\begin{frame}
+\frametitle{Eigenvectors}
+
+If $S = (C_1, \ldots, C_n)$ such that $S^{-1} A S = \textrm{diag} \left( \lambda_1, \ldots, \lambda_n \right)$, then 
+$$
+A C_k = \lambda_k C_k,
+$$
+and $C_k$ is called an \textit{eigenvector} of $A$ associated with the eigenvalue $\lambda_k$.
+
+\vfill
+
+\end{frame}
+
+%------------------------------------------------
+
+\section{Characteristic Polynomials} 
+
+\begin{frame}
+\frametitle{Characteristic Polynomials}
+
+The complex number $\lambda$ is an eigenvalue of $A \in \mathbb{C}^n_n$ if and only if
+$$
+\textrm{det} \left( A - \lambda \mathbb{I} \right) = 0.
+$$
+
+\vfill
+
+\end{frame}
+
+
+%------------------------------------------------
+
+\section{Useful Properties } 
+
+
+\begin{frame}
+\frametitle{Trace and Determinant of a Diagonalizable Matrix}
+
+The \textit{trace} $\textrm{Tr}(A)$ of a square matrix $A$ is the sum of its diagonal values. If the matrix $A$ is diagonalizable, we always have
+$$
+\textrm{Tr}(A) = \textrm{Tr} \left(  \textrm{diag} \left( \lambda_1, \ldots, \lambda_n \right) \right) = \sum_i \lambda_i.
+$$
+
+We also have
+$$
+\textrm{det}(A) = \prod_i \lambda_i.
+$$
+
+\vfill
+
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document} 
