@@ -1,0 +1,301 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Modified by Jeremie Gillet in March 2017 to make an OIST template
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+\documentclass[8pt]{beamer}
+
+\usepackage{graphicx} % Allows to include images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\mode<presentation> {
+
+\usetheme{default}
+\definecolor{OISTcolor}{rgb}{0.65,0.16,0.16}
+
+%\usecolortheme[named=OISTcolor]{structure} % Use this line for OIST colors
+\usecolortheme[named=black]{structure} % Black titles and such
+
+\setbeamertemplate{itemize item}{\color{black}$\bullet$} % Comment this line for default bullet points (colored triangles)
+
+\usepackage{helvet} % Helvetica Font 
+\renewcommand{\familydefault}{\sfdefault}
+
+\setbeamertemplate{navigation symbols}{} % No navigation symbols
+\setbeamertemplate{footline} % Only page number at the bottom
+ {\begin{minipage}{125mm} \vspace{-3 mm} \hfill \insertframenumber \end{minipage}}
+ }
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Short title]{\color{black} Eigendecomposition for Matrices of Special Forms}
+\subtitle{ \color{black}
+01.07.2021
+}
+
+\author{Vsevolod Nikulin} % Your name
+\date{} % Date, leave empty, use subtitle instead
+
+\begin{document}
+
+\setbeamertemplate{background}{\includegraphics[width=\paperwidth]{title.png}} % Adding the background logo for the title page
+
+\begin{frame}[plain]
+\vspace*{1.55cm} % Use this spacing if author field is empty
+%\vspace*{5mm}  % Use this spacing if author field is used
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\setbeamertemplate{background}{\includegraphics[width=\paperwidth, trim=0 0 0 -700 ]{footer.png}} % Adding the background logo for the rest of the slides
+
+\begin{frame}
+\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+
+\begin{itemize}
+    \item Symmetric Matrices and Their Properties
+    \item Symmetric Positive (Semi-)Definite Matrices and Their Properties
+    \item Gram Decomposition
+    \item Another Useful Property
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+
+\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
+\begin{frame}
+\frametitle{Symmetric Matrix}
+
+\begin{block}{Definition}
+
+$M$ Symmetric $\iff M^T = M$
+\end{block}
+
+\begin{block}{Properties}
+\begin{itemize}
+    \item All eigenvalues are real
+    \item Eigenvectors form an orthogonal basis
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Eigenvalues are real}
+
+\begin{block}{Notation: Conjugate Transpose}
+$M^* = \overline{M^T}$
+\end{block}
+
+\begin{block}{Properties of symmetric $M$}
+If $M$ is symmetric and real, then $M^* = M$. In particular, $(\mathbf{x}^* M \mathbf{x})^* = \mathbf{x}^* M^* \mathbf{x} = \mathbf{x}^* M \mathbf{x}$.
+
+\begin{align*}
+ \forall \mathbf{x} \in \mathbb{C}^n : \mathbf{x}^* M \mathbf{x} \in \mathbb{R}
+\end{align*}
+
+For any eigenvalue $\lambda$ and eigenvector $\mathbf{v}$ we have
+
+\begin{align*}
+    M \mathbf{v} &= \lambda \mathbf{v} \\
+    \mathbf{v}^* M \mathbf{v} &= \lambda \mathbf{v}^* \mathbf{v} \implies \lambda = \overline{\lambda}
+\end{align*}
+
+Moreover
+
+\begin{align*}
+    M \mathbf{v} &= \lambda \mathbf{v} \\
+    M \overline{\mathbf{v}} &= \lambda \overline{\mathbf{v}} \\
+    M (\mathbf{v} + \overline{\mathbf{v}}) &= \lambda (\mathbf{v} + \overline{\mathbf{v}})
+\end{align*}
+
+Hence, for a real eigenvalue it is always possible to find a real eigenvector.
+
+\end{block}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Eigenvectors form an orthogonal basis}
+
+Proof that any pair of linearly independent eigenvectors $\mathbf{v}_1$ and $\mathbf{v}_2$ corresponding to eigenvalues $\lambda_1$ and $\lambda_2$ are orthogonal:
+
+\begin{block}{Case 1: $\lambda_1$ and $\lambda_2$ are distinct}
+\begin{align*}
+    M \mathbf{v}_1 &= \lambda_1 \mathbf{v}_1 \\
+    \mathbf{v}_2^T M \mathbf{v}_1 &=  \lambda_1 \mathbf{v}_2^T \mathbf{v}_1 \\
+    \mathbf{v}_2^T M^T \mathbf{v}_1 &= \lambda_1 \mathbf{v}_2^T \mathbf{v}_1 \\
+    (M \mathbf{v}_2)^T \mathbf{v}_1 &= \lambda_1 \mathbf{v}_2^T \mathbf{v}_1 \\
+    \lambda_2 \mathbf{v}_2^T \mathbf{v}_1 &= \lambda_1 \mathbf{v}_2^T \mathbf{v}_1 \implies \mathbf{v}_2^T \mathbf{v}_1 = 0
+\end{align*}
+\end{block}
+
+\begin{block}{Case 2: $\lambda_1 = \lambda_2 = \lambda$}
+\begin{align*}
+    M \mathbf{v}_1 &= \lambda \mathbf{v}_1 \\
+    M \mathbf{v}_2 &= \lambda \mathbf{v}_2 \\
+    M (a \mathbf{v}_1 + b \mathbf{v}_2) &= \lambda (a \mathbf{v}_1 + b \mathbf{v}_2 )
+\end{align*}
+
+The entire linear subspace spanned by $\mathbf{v}_1$ and $\mathbf{v}_2$ consists of eigenvectors. Of course it is possible to find two orthogonal vectors.
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Eigendecomposition of Symmetric Matrix}
+
+Eigendecomposition of $M$ is
+
+\begin{align*}
+    M = S D S^{-1}
+\end{align*}
+
+We can find orthogonal unit eigenvectors, hence $S^{-1} = S^T$:
+
+\begin{align*}
+    S^T S = \begin{pmatrix}
+    \mathbf{v}_1 \\
+    \mathbf{v}_2 \\
+    \dots \\
+    \mathbf{v}_n
+    \end{pmatrix} (\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n) = \begin{pmatrix}
+    1 & 0 & \dots & 0 \\
+    0 & 1 & \dots & 0 \\
+      &   & \ddots &  \\
+    0 & 0 & \dots & 1
+    \end{pmatrix}
+\end{align*}
+
+Therefore eigendecomposition of symmetric $M$ has especially convenient form:
+
+\begin{align*}
+    M = S D S^T
+\end{align*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Positive (Semi-)Definite Matrices}
+
+\begin{block}{Definition}
+$M$ Positive Semi-Definite $\iff \forall \mathbf{x} \in \mathbb{R}^n : \mathbf{x}^T M \mathbf{x} \geq 0$
+
+$M$ Positive Definite $\iff \forall \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\} : \mathbf{x}^T M \mathbf{x} > 0$
+\end{block}
+
+\begin{block}{Properties of symmetric positive (semi-)definite matrices}
+\begin{itemize}
+    \item All eigenvalues are real and (non-negative) positive
+    \item Eigenvectors form an orthogonal basis
+    \item When $M$ is real, it accepts following decomposition: $M = B^T B$
+    \item For any matrix $B$ the matrix $B^T B$ is symmetric positive semi-definite
+\end{itemize}
+\end{block}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Eigenvalues are (Non-Negative) Positive}
+
+Remember, eigenvalues and eigenvectors are real
+
+\begin{align*}
+    M \mathbf{v} &= \lambda \mathbf{v} \\
+    \mathbf{v}^T M \mathbf{v} &= \lambda \mathbf{v}^T \mathbf{v}
+\end{align*}
+
+Since $\mathbf{v}^T M \mathbf{v} \geq 0$ and $\mathbf{v}^T \mathbf{v} \geq 0$, we have $\lambda \geq 0$.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Gram Decomposition}
+
+For symmetric positive (semi-)definite matrix $M$ we can write
+
+\begin{align*}
+    M = S D S^T = S \sqrt{D} \sqrt{D} S^T = \sqrt{D} S (\sqrt{D} S)^T = B^T B
+\end{align*}
+
+Where $\sqrt{D}$ is element-wise square root of the matrix $D$. 
+
+Also for any matrix $B$ we know that matrix $B^T B$ is symmetric:
+
+\begin{align*}
+    (B^T B)^T = B^T (B^T)^T = B^T B
+\end{align*}
+
+and positive semi-definite:
+
+\begin{align*}
+    \mathbf{x}^T B^T B \mathbf{x} = (B \mathbf{x})^T B \mathbf{x} \geq 0
+\end{align*}
+
+Notice, $B$ doesn't need to be square!
+
+\end{frame}
+
+\begin{frame}{Useful Property}
+
+Find a unit vector $\mathbf{x}$ (s.t. $\norm{\mathbf{x}}^2 = 1$) which maximizes $\mathbf{x}^T M \mathbf{x}$:
+
+\begin{align*}
+    \mathbf{x}^T M \mathbf{x} = \mathbf{x}^T S D S^T \mathbf{x} = \mathbf{u}^T D \mathbf{u} = \lambda_1 u_1^2 + \lambda_2 u_2^2 + \dots + \lambda_n u_n^2
+\end{align*}
+
+Where $\mathbf{u} = S^T \mathbf{x}$. Notice that $S$ is orthogonal matrix, hence if $\mathbf{x}$ is an arbitrary unit vector, then $\mathbf{u}$ is also arbitrary unit vector.
+
+Therefore $\mathbf{u}^T D \mathbf{u}$ is an affine combination of eigenvalues. Assuming $\lambda_1$ is the largest eigenvalue, the expression is maximized with $\mathbf{u} = (1, 0, 0, ..., 0)$. Hence
+
+\begin{align*}
+    \mathbf{x} = (S^T)^{-1} \mathbf{u} = S \mathbf{u} = (\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n) \begin{pmatrix}
+    1 \\
+    0 \\
+    \dots \\
+    0
+    \end{pmatrix} = \mathbf{v}_1
+\end{align*}
+
+The answer is the eigenvector which corresponds to the largest eigenvalue.
+
+\end{frame}
+
+
+\begin{frame}
+\Huge{\centerline{The End}}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document} 
